@@ -1,9 +1,9 @@
 document.querySelector(".form").addEventListener("submit", saveTicket);
 
 function saveTicket(e) {
-  let ticketDesc = document.querySelector(".ticket__desc").value;
-  let ticketPriority = document.querySelector(".ticket__priority").value;
-  let ticketAssign = document.querySelector(".ticket__assign").value;
+  let ticketDesc = document.querySelector(".form__desc").value;
+  let ticketPriority = document.querySelector(".form__priority").value;
+  let ticketAssign = document.querySelector(".form__assign").value;
   //Generate a random GUID using chance.js
   let ticketId = chance.guid();
   let ticketStatus = "Aperto";
@@ -76,12 +76,12 @@ function fetchTickets() {
 
     ticket__list.innerHTML += ` 
     <div class="ticket">
-      <h6>Ticket ID: ${id}</h6>
-      <p><span class="label label-info">${status}</span></p>
-      <h3>${desc}</h3>
-      <div>
-        <span><img src="svg/clock.svg" alt="Priority"> ${priority}</span>
-        <span><img src="svg/person.svg" alt="Person">${assign}<span>
+      <h6 class="ticket__id">Ticket ID: ${id}</h6>
+      <p class="ticket__status">${status}</p>
+      <h3 class="ticket__desc">${desc}</h3>
+      <div class="ticket__info">
+        <span class="ticket__priority"><img src="svg/clock.svg" alt="Priority">${priority}</span>
+        <span class="ticket__person"><img src="svg/person.svg" alt="Person">${assign}</span>
       </div>
       <div onclick="setStatusClosed('${id}')" class="button button--close">Chiudi</div>
       <div onclick="deleteTicket('${id}')" class="button button--delete">Cancella</div>
