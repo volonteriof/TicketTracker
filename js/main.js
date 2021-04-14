@@ -1,9 +1,9 @@
-document.querySelector("#ticket__form").addEventListener("submit", saveTicket);
+document.querySelector(".form").addEventListener("submit", saveTicket);
 
 function saveTicket(e) {
-  let ticketDesc = document.querySelector("#ticket__desc").value;
-  let ticketPriority = document.querySelector("#ticket__priority").value;
-  let ticketAssign = document.querySelector("#ticket__assign").value;
+  let ticketDesc = document.querySelector(".ticket__desc").value;
+  let ticketPriority = document.querySelector(".ticket__priority").value;
+  let ticketAssign = document.querySelector(".ticket__assign").value;
   //Generate a random GUID using chance.js
   let ticketId = chance.guid();
   let ticketStatus = "Aperto";
@@ -26,7 +26,7 @@ function saveTicket(e) {
     localStorage.setItem("tickets", JSON.stringify(tickets));
   }
 
-  document.querySelector("#ticket__form").reset();
+  document.querySelector(".form").reset();
 
   fetchTickets();
 
@@ -63,7 +63,7 @@ function deleteTicket(id) {
 
 function fetchTickets() {
   let tickets = JSON.parse(localStorage.getItem("tickets"));
-  let ticket__list = document.querySelector("#ticket__list");
+  let ticket__list = document.querySelector(".ticket__list");
 
   ticket__list.innerHTML = "";
 
@@ -75,14 +75,16 @@ function fetchTickets() {
     let status = tickets[i].status;
 
     ticket__list.innerHTML += ` 
-    <div>
+    <div class="ticket">
       <h6>Ticket ID: ${id}</h6>
       <p><span class="label label-info">${status}</span></p>
       <h3>${desc}</h3>
-      <p>${priority}</p>
-      <p>${assign}</p>
-      <div onclick="setStatusClosed('${id}')" class="btn btn-warning">Chiudi</div>
-      <div onclick="deleteTicket('${id}')" class="btn btn-danger">Cancella</div>
+      <div>
+        <span><img src="svg/clock.svg" alt="Priority"> ${priority}</span>
+        <span><img src="svg/person.svg" alt="Person">${assign}<span>
+      </div>
+      <div onclick="setStatusClosed('${id}')" class="button button--close">Chiudi</div>
+      <div onclick="deleteTicket('${id}')" class="button button--delete">Cancella</div>
     </div>
     `;
   }
