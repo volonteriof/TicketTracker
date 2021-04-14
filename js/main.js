@@ -1,14 +1,14 @@
 document.querySelector(".form").addEventListener("submit", saveTicket);
 
 function saveTicket(e) {
-  let ticketDesc = document.querySelector(".form__desc").value;
-  let ticketPriority = document.querySelector(".form__priority").value;
-  let ticketAssign = document.querySelector(".form__assign").value;
+  const ticketDesc = document.querySelector(".form__desc").value;
+  const ticketPriority = document.querySelector(".form__priority").value;
+  const ticketAssign = document.querySelector(".form__assign").value;
   //Generate a random GUID using chance.js
-  let ticketId = chance.guid();
-  let ticketStatus = "Aperto";
+  const ticketId = chance.guid();
+  const ticketStatus = "Aperto";
 
-  let ticket = {
+  const ticket = {
     id: ticketId,
     description: ticketDesc,
     priority: ticketPriority,
@@ -17,11 +17,11 @@ function saveTicket(e) {
   };
 
   if (localStorage.getItem("tickets") == null) {
-    let tickets = [];
+    const tickets = [];
     tickets.push(ticket);
     localStorage.setItem("tickets", JSON.stringify(tickets));
   } else {
-    let tickets = JSON.parse(localStorage.getItem("tickets"));
+    const tickets = JSON.parse(localStorage.getItem("tickets"));
     tickets.push(ticket);
     localStorage.setItem("tickets", JSON.stringify(tickets));
   }
@@ -34,7 +34,7 @@ function saveTicket(e) {
 }
 
 function setStatusClosed(id) {
-  let tickets = JSON.parse(localStorage.getItem("tickets"));
+  const tickets = JSON.parse(localStorage.getItem("tickets"));
 
   for (let i = 0; i < tickets.length; i++) {
     if (tickets[i].id == id) {
@@ -47,8 +47,8 @@ function setStatusClosed(id) {
   fetchTickets();
 }
 
-function deleteTicket(id) {
-  let tickets = JSON.parse(localStorage.getItem("tickets"));
+function deconsteTicket(id) {
+  const tickets = JSON.parse(localStorage.getItem("tickets"));
 
   for (let i = 0; i < tickets.length; i++) {
     if (tickets[i].id == id) {
@@ -62,29 +62,29 @@ function deleteTicket(id) {
 }
 
 function fetchTickets() {
-  let tickets = JSON.parse(localStorage.getItem("tickets"));
-  let ticket__list = document.querySelector(".ticket__list");
+  const tickets = JSON.parse(localStorage.getItem("tickets"));
+  const ticket__list = document.querySelector(".ticket__list");
 
   ticket__list.innerHTML = "";
 
   for (let i = 0; i < tickets.length; i++) {
-    let id = tickets[i].id;
-    let desc = tickets[i].description;
-    let priority = tickets[i].priority;
-    let assign = tickets[i].assign;
-    let status = tickets[i].status;
+    const id = tickets[i].id;
+    const desc = tickets[i].description;
+    const priority = tickets[i].priority;
+    const assign = tickets[i].assign;
+    const status = tickets[i].status;
 
     ticket__list.innerHTML += ` 
     <div class="ticket">
-      <h6 class="ticket__id">Ticket ID: ${id}</h6>
+      <p class="ticket__id">Ticket ID: ${id}</p>
       <p class="ticket__status">${status}</p>
       <h3 class="ticket__desc">${desc}</h3>
-      <div class="ticket__info">
-        <span class="ticket__priority"><img src="svg/clock.svg" alt="Priority">${priority}</span>
-        <span class="ticket__person"><img src="svg/person.svg" alt="Person">${assign}</span>
+      <div class="ticket__info"><img src="svg/clock.svg" alt="Priority">${priority}</div>
+      <div class="ticket__info"><img src="svg/person.svg" alt="Person">${assign}</div>
+      <div class="ticket__buttons">
+        <button type="button" onclick="setStatusClosed('${id}')" class="button button--close">Chiudi</button>
+        <button type="button" onclick="deconsteTicket('${id}')" class="button button--delete">Cancella</button>
       </div>
-      <div onclick="setStatusClosed('${id}')" class="button button--close">Chiudi</div>
-      <div onclick="deleteTicket('${id}')" class="button button--delete">Cancella</div>
     </div>
     `;
   }

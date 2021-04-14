@@ -1,1 +1,129 @@
-/* No CSS */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.heading {
+  margin: 32px 0;
+  font-weight: 700;
+}
+
+.button {
+  max-width: 100px;
+  padding: 10px 14px;
+  color: #ffffff;
+  background-color: #3c7bb4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.button--close {
+  background-color: #edac58;
+}
+
+.button--delete {
+  background-color: #d35452;
+}
+
+.form__container {
+  padding: 32px 24px;
+  background-color: #eeeeee;
+  border-radius: 5px;
+}
+
+.form__title {
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.form__group {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  margin: 24px 0;
+}
+
+.form__desc, .form__priority, .form__assign {
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+}
+
+.ticket {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
+  padding: 32px 24px;
+  background-color: #eeeeee;
+  border-radius: 5px;
+}
+
+.ticket__id {
+  font-size: 1.4rem;
+}
+
+.ticket__status {
+  max-width: 60px;
+  padding: 6px 4px;
+  margin: 18px 0;
+  background-color: #a3a3a3;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ticket__desc {
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.ticket__info {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-bottom: 18px;
+  font-size: 1.4rem;
+}
+
+.ticket__info img {
+  margin-right: 4px;
+}
